@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
 </head>
 <body>
-    <div class="container">  
+    <div class="container my-5">  
         <h2>List of Customers</h2>
-        <a class="create-btn" href="/ERP_system/create.php" role="button">New Customer</a>
+        <a class="btn btn-primary " href="/ERP_system/insert.php" role="button">New Customer</a>
         <table class="table">
             <thead>
                 <tr>
@@ -24,7 +24,7 @@
             </thead>
             <tbody>
                 <?php
-                $servername = " localhost";
+                $servername = "localhost";
                 $username = "root";
                 $password = "";
                 $database="erp_system";
@@ -38,11 +38,12 @@
                 $sql= "SELECT * FROM customer";
                 $result = $connection-> query($sql);
 
-                if ($result) {
-                    die("invalid query: " . $connection->connect_error);
+                if (!$result) {
+                    die("invalid query: " . $connection->error);
                 }
+                
 
-                while ($row = $result->tetch_assoc()) {
+                while ($row = $result->fetch_assoc()) {
                     echo"
                     <tr>
                     <td>$row[id]</td>
@@ -50,11 +51,12 @@
                     <td>$row[first_name]</td>
                     <td>$row[middle_name]</td>
                     <td>$row[last_name]</td>
-                    <td>$row[contact_no]/td>
-                    <td>$row[district]/td>
+                    <td>$row[contact_no]</td>
+                    <td>$row[district]</td>
+                    
                     <td>
-                        <a class='edit-btn' href='/ERP_system/edit.php?id=$row[id]'>Edit</a>
-                        <a class='delete-btn' href='/ERP_system/delete.php?id=$row[id]'>Delete</a>
+                        <a class='btn btn-primary btn-sm' href='/ERP_system/edit.php?id=$row[id]'>Edit</a>
+                        <a class='btn btn-danger btn-sm' href='/ERP_system/delete.php?id=$row[id]'>Delete</a>
                     </td>
                 </tr>
                     ";
