@@ -91,9 +91,6 @@ $district = "";
         ";
     }
     ?>
-         
-
-
         <form method="post" action="">
           <div class="row mb-3">
               <label class="col-sm-3 col-form-label">Title</label>
